@@ -38,13 +38,39 @@ class WorkController extends Controller
     }
 
     public function updateWork() {
-        $workStr = Work::find(4);
+        $workStr = Work::find(5);
 
         $workStr->update(
             [
-                'title_work' => 'Новая работа №4',
-                'description_work' => 'Обновление моей четвертой работы',
+                'grade' => '4',
             ]
             );
+    }
+
+    public function deleteWork() {
+        $workStr = Work::withTrashed()->find(2);
+        $workStr->restore();
+    }
+
+    public function firstOrCreateWork() {
+        $workArr = Work::firstOrCreate(  [
+            'title_work' => 'Работа №9',
+        ], 
+        [
+            'title_work' => 'Работа №9',
+            'description_work' => 'Моя девятая работа'
+        ]);
+        dump($workArr);
+    }
+
+    public function updateOrCreateWork() {
+        $workArr = Work::updateOrCreate(  [
+            'title_work' => 'Работа №9',
+        ], 
+        [
+            'title_work' => 'Работа №10',
+            'description_work' => 'Моя десятая работа'
+        ]);
+        dump($workArr);
     }
 }

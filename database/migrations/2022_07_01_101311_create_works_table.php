@@ -19,6 +19,7 @@ class CreateWorksTable extends Migration
             $table->text('description_work');
             $table->string('link', 100);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

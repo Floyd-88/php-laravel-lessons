@@ -15,4 +15,9 @@ class ProfileController extends Controller
     dump($profile->about_me);
     dump($profile->ava);;
     }
+
+    public function updateProfile() {
+        $profileStr = Profile::find(1);
+        $profileStr->update(['profession' => 'programmer']);
+    }
 }

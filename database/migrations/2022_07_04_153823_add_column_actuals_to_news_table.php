@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateHobbiesTable extends Migration
+class AddColumnActualsToNewsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreateHobbiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('hobbies', function (Blueprint $table) {
-            $table->id();
-            $table->string('name_hobbie');
-            $table->timestamps();
-            $table->softDeletes();
+        Schema::table('news', function (Blueprint $table) {
+            $table->string('actuals')->nullable()
+->after('img');
         });
     }
 
@@ -28,6 +26,8 @@ class CreateHobbiesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('hobbies');
+        Schema::table('news', function (Blueprint $table) {
+            $table->dropColumn('actuals');
+        });
     }
 }

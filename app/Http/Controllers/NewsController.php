@@ -21,9 +21,9 @@ class NewsController extends Controller
         'aricles' => 'Я разбираюсь в том как добавдять данные в БД',
         ],
         [
-            'name_news' => 'я продолжаю изучаю laravel',
-            'aricles' => 'Я закрепляю тему как добавлять данные в БД',
-            ],
+        'name_news' => 'я продолжаю изучаю laravel',
+        'aricles' => 'Я закрепляю тему как добавлять данные в БД',
+        ],
     ];
 
     foreach ($arrNews as $item) {
@@ -40,5 +40,28 @@ class NewsController extends Controller
                 'aricles' => 'Теперь я изучаю обновление данных в БД',
             ]
             );
+    }
+
+    public function deleteNews() {
+        $newsStr = News::find(2);
+        $newsStr->delete();
+    }
+
+    public function firstOrCreateNews() {
+        $newsArr = News::firstOrCreate([
+            'id' => '3'
+        ], ['name_news' => 'изучение laravel часть 3',
+            'aricles' => 'я изучаю обновление строк в БД']);
+
+        dump($newsArr);
+    }
+
+    public function updateOrCreateNews() {
+        $newsArr = News::updateOrCreate([
+            'id' => '3'
+        ], ['name_news' => 'изучение laravel часть 3',
+            'aricles' => 'я изучаю обновление или создание строк в БД']);
+
+        dump($newsArr);
     }
 }

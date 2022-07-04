@@ -13,4 +13,17 @@ class ContactsController extends Controller
         dump($contact->email);
         dump($contact->phone);
     } 
+
+    public function createContacts() {
+        $addContacts = [
+        ['country' => 'Russia',
+        'city' => 'Stavropol',
+        'email' => 'ila@mail.com',
+        'phone' => '450-533'],
+        ];
+
+        foreach($addContacts as $elem) {
+            Contact::create($elem);
+        }
+    }
 }

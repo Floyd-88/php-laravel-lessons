@@ -21,6 +21,7 @@ class CreateProfilesTable extends Migration
             $table->text('about_me');
             $table->string('ava');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
