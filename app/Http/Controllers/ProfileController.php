@@ -9,11 +9,7 @@ class ProfileController extends Controller
 {
     public function showProfile(){
     $profile = Profile::find(1);
-    dump($profile->name);
-    dump($profile->age);
-    dump($profile->city);
-    dump($profile->about_me);
-    dump($profile->ava);;
+    return view('profile', compact('profile'));
     }
 
     public function updateProfile() {

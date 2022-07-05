@@ -8,10 +8,9 @@ use Illuminate\Http\Request;
 class NewsController extends Controller
 {
     public function showNews(){
-    $news = News::find(1);
-    dump($news->name_news);
-    dump($news->aricles);
-    dump($news->img);
+    $news = News::all();
+    
+    return view('news', compact('news'));
     }
 
     public function createNews() {

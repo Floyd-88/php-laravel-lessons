@@ -8,8 +8,9 @@ use Illuminate\Http\Request;
 class WorkController extends Controller
 {
     public function showWork(){
-    $work = Work::where('title_work', 'Работа №1')->first();
-        dump($work->description_work);
+    $work = Work::all();
+        
+    return view('work', compact('work'));
     }
 
     public function createWork() {

@@ -4,14 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Contact;
 use Illuminate\Http\Request;
+use Illuminate\View\Component;
 
 class ContactsController extends Controller
 {
     public function showContacts(){
         $contact = Contact::find(1);
-        dump($contact->adres);
-        dump($contact->email);
-        dump($contact->phone);
+
+        return view('contact', compact('contact'));
     } 
 
     public function createContacts() {

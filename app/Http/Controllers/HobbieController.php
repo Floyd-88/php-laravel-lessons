@@ -9,9 +9,8 @@ class HobbieController extends Controller
 {
     public function showHobbie(){
         $hobbie = Hobbie::all();
-        foreach($hobbie as $elem) {
-            dump($elem->name_hobbie);
-        }        
+  
+        return view('hobbie', compact('hobbie'));
     }
 
     public function createHobbie() {
