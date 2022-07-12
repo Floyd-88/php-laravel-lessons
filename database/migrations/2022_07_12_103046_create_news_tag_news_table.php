@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class EditColumnCountryToContactsTable extends Migration
+class CreateNewsTagNewsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,11 @@ class EditColumnCountryToContactsTable extends Migration
      */
     public function up()
     {
-        Schema::table('contacts', function (Blueprint $table) {
-            $table->text('country')->change();
+        Schema::create('news_tag_news', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('news_id');
+	        $table->unsignedBigInteger('tag_news_id');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +28,6 @@ class EditColumnCountryToContactsTable extends Migration
      */
     public function down()
     {
-        Schema::table('contacts', function (Blueprint $table) {
-            $table->string('country', 255)->change();
-        });
+        Schema::dropIfExists('news_tag_news');
     }
 }

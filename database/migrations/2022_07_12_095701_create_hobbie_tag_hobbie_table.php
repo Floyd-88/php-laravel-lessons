@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddColumnCountryContactsTable extends Migration
+class CreateHobbieTagHobbieTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,12 @@ class AddColumnCountryContactsTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('hobbie_tag_hobbie', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('hobbie_id');
+	        $table->unsignedBigInteger('tag_hobbie_id');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -23,6 +28,6 @@ class AddColumnCountryContactsTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('hobbie_tag_hobbie');
     }
 }

@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
+    <link rel="stylesheet" href="{{asset('css/hobbie.css')}}">
     <title>Мой сайт</title>
 </head>
 <body>
@@ -17,19 +18,19 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="{{route('profile.showProfile')}}">Мой профиль</a>
+          <a class="nav-link active" aria-current="page" href="{{route('profile.index')}}">Мой профиль</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{route('hobbie.showHobbie')}}">Мои хобби</a>
+          <a class="nav-link" href="{{route('hobbies.index')}}">Мои хобби</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{route('work.showWork')}}">Мои работы</a>
+          <a class="nav-link" href="{{route('work.index')}}">Мои работы</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{route('news.showNews')}}">Мои новости</a>
+          <a class="nav-link" href="{{route('news.index')}}">Мои новости</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{route('contacts.showContacts')}}">Мои контакты</a>
+          <a class="nav-link" href="{{route('contacts.index')}}">Мои контакты</a>
         </li>
       </ul>
     </div>

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddColumnGradeToWorksTable extends Migration
+class CreateCategoryHobbiesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,11 @@ class AddColumnGradeToWorksTable extends Migration
      */
     public function up()
     {
-        Schema::table('works', function (Blueprint $table) {
-            $table->integer('grade')->nullable()->after('link');
-
+        Schema::create('category_hobbies', function (Blueprint $table) {
+            $table->id();
+            $table->string('title');
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -26,8 +28,6 @@ class AddColumnGradeToWorksTable extends Migration
      */
     public function down()
     {
-        Schema::table('works', function (Blueprint $table) {
-            $table->dropColumn('grade');
-        });
+        Schema::dropIfExists('category_hobbies');
     }
 }

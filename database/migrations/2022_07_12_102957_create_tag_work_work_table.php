@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class EditColumnAdresToContactsTable extends Migration
+class CreateTagWorkWorkTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,11 @@ class EditColumnAdresToContactsTable extends Migration
      */
     public function up()
     {
-        Schema::table('contacts', function (Blueprint $table) {
-            $table->renameColumn('adres', 'city');
+        Schema::create('tag_work_work', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('work_id');
+	        $table->unsignedBigInteger('tag_work_id');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +28,6 @@ class EditColumnAdresToContactsTable extends Migration
      */
     public function down()
     {
-        Schema::table('contacts', function (Blueprint $table) {
-            $table->renameColumn('city', 'adres');
-        });
+        Schema::dropIfExists('tag_work_work');
     }
 }

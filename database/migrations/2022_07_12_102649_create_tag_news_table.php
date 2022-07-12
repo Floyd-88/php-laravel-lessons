@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class EditColumnAriclesToNewsTable extends Migration
+class CreateTagNewsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,11 @@ class EditColumnAriclesToNewsTable extends Migration
      */
     public function up()
     {
-        Schema::table('news', function (Blueprint $table) {
-            $table->renameColumn('aricles', 'discription');
+        Schema::create('tag_news', function (Blueprint $table) {
+            $table->id();
+            $table->string('title');
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -25,8 +28,6 @@ class EditColumnAriclesToNewsTable extends Migration
      */
     public function down()
     {
-        Schema::table('news', function (Blueprint $table) {
-            $table->renameColumn('discription', 'aricles');
-        });
+        Schema::dropIfExists('tag_news');
     }
 }
