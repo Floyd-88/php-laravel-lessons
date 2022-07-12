@@ -1,12 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\MySiteController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\HobbieController;
-use App\Http\Controllers\ContactsController;
-use App\Http\Controllers\WorkController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\WorkController;
+use App\Http\Controllers\HobbieController;
+use App\Http\Controllers\MySiteController;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,20 +20,33 @@ use App\Http\Controllers\NewsController;
 
 Route::get('/', [MySiteController::class, 'showSite']);
 
-Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
-Route::get('/profile/{profile}/edit', [ProfileController::class, 'edit'])->name('profile.edit');
-Route::patch('/profile/{profile}', [ProfileController::class, 'update'])->name('profile.update');
-Route::get('/profile/create', [ProfileController::class, 'create'])->name('profile.create');
-Route::post('/profile', [ProfileController::class, 'store'])->name('profile.store');
-// Route::get('/profile/update', [ProfileController::class, 'updateProfile']);
 
-Route::get('/hobbies', [HobbieController::class, 'index'])->name('hobbies.index');
-Route::get('/hobbies/create', [HobbieController::class, 'create'])->name('hobbies.create');
-Route::post('/hobbies', [HobbieController::class, 'store'])->name('hobbies.store');
-Route::get('/hobbies/{hobbie}', [HobbieController::class, 'show'])->name('hobbies.show');
-Route::get('/hobbies/{hobbie}/edit', [HobbieController::class, 'edit'])->name('hobbies.edit');
-Route::patch('/hobbies/{hobbie}', [HobbieController::class, 'update'])->name('hobbies.update');
-Route::delete('/hobbies/{hobbie}', [HobbieController::class, 'destroy'])->name('hobbies.destroy');
+
+
+
+
+    Route::get('/profile', \App\Http\Controllers\Profile\IndexController::class)->name('profile.index');
+    Route::get('/profile/{profile}/edit', \App\Http\Controllers\Profile\EditController::class)->name('profile.edit');
+    Route::patch('/profile/{profile}', \App\Http\Controllers\Profile\UpdateController::class)->name('profile.update');
+    Route::get('/profile/create', \App\Http\Controllers\Profile\CreateController::class)->name('profile.create');
+    Route::post('/profile', \App\Http\Controllers\Profile\StoreController::class)->name('profile.store');
+
+
+    Route::get('/contacts', \App\Http\Controllers\Contacts\IndexController::class)->name('contacts.index');
+    Route::get('/contacts/create', \App\Http\Controllers\Contacts\CreateController::class)->name('contacts.create');
+    Route::post('/contacts', \App\Http\Controllers\Contacts\StoreController::class)->name('contacts.store');
+    Route::get('/contacts/{contact}/edit', \App\Http\Controllers\Contacts\EditController::class)->name('contacts.edit');
+    Route::patch('/contacts/{contact}', \App\Http\Controllers\Contacts\UpdateController::class)->name('contacts.update');
+    // Route::get('/contacts/create', [ContactsController::class, 'createContacts']);
+
+    
+    Route::get('/hobbies', \App\Http\Controllers\Hobbie\IndexController::class)->name('hobbies.index');
+    Route::get('/hobbies/create', \App\Http\Controllers\Hobbie\CreateController::class)->name('hobbies.create');
+    Route::post('/hobbies', \App\Http\Controllers\Hobbie\StoreController::class)->name('hobbies.store');
+    Route::get('/hobbies/{hobbie}', \App\Http\Controllers\Hobbie\ShowController::class)->name('hobbies.show');
+    Route::get('/hobbies/{hobbie}/edit', \App\Http\Controllers\Hobbie\EditController::class)->name('hobbies.edit');
+    Route::patch('/hobbies/{hobbie}', \App\Http\Controllers\Hobbie\UpdateController::class)->name('hobbies.update');
+    Route::delete('/hobbies/{hobbie}', \App\Http\Controllers\Hobbie\DestroyController::class)->name('hobbies.destroy');
 
 // Route::get('/hobbie/update', [HobbieController::class, 'updateHobbie']);
 // Route::get('/hobbie/delete', [HobbieController::class, 'deleteHobbie']);
@@ -41,33 +54,29 @@ Route::delete('/hobbies/{hobbie}', [HobbieController::class, 'destroy'])->name('
 // Route::get('/hobbie/updateOrCreate', [HobbieController::class, 'updateOrCreateHobbie']);
 
 
-Route::get('/contacts', [ContactsController::class, 'index'])->name('contacts.index');
-Route::get('/contacts/create', [ContactsController::class, 'create'])->name('contacts.create');
-Route::post('/contacts', [ContactsController::class, 'store'])->name('contacts.store');
-Route::get('/contacts/{contact}/edit', [ContactsController::class, 'edit'])->name('contacts.edit');
-Route::patch('/contacts/{contact}', [ContactsController::class, 'update'])->name('contacts.update');
-// Route::get('/contacts/create', [ContactsController::class, 'createContacts']);
 
-Route::get('/work', [WorkController::class, 'index'])->name('work.index');
-Route::get('/work/create', [WorkController::class, 'create'])->name('work.create');
-Route::post('/work', [WorkController::class, 'store'])->name('work.store');
-Route::get('/work/{work}', [WorkController::class, 'show'])->name('work.show');
-Route::get('/work/{work}/edit', [WorkController::class, 'edit'])->name('work.edit');
-Route::patch('/work/{work}', [WorkController::class, 'update'])->name('work.update');
-Route::delete('/work/{work}', [WorkController::class, 'destroy'])->name('work.destroy');
+
+Route::get('/work', \App\Http\Controllers\Work\IndexController::class)->name('work.index');
+Route::get('/work/create', \App\Http\Controllers\Work\CreateController::class)->name('work.create');
+Route::post('/work', \App\Http\Controllers\Work\StoreController::class)->name('work.store');
+Route::get('/work/{work}', \App\Http\Controllers\Work\ShowController::class)->name('work.show');
+Route::get('/work/{work}/edit', \App\Http\Controllers\Work\EditController::class)->name('work.edit');
+Route::patch('/work/{work}', \App\Http\Controllers\Work\UpdateController::class)->name('work.update');
+Route::delete('/work/{work}', \App\Http\Controllers\Work\DestroyController::class)->name('work.destroy');
 // Route::get('/work/create', [WorkController::class, 'createWork']);
 // Route::get('/work/update', [WorkController::class, 'updateWork']);
 // Route::get('/work/delete', [WorkController::class, 'deleteWork']);
 // Route::get('/work/firstOrCreate', [WorkController::class, 'firstOrCreateWork']);
 // Route::get('/work/updateOrCreate', [WorkController::class, 'updateOrCreateWork']);
 
-Route::get('/news', [NewsController::class, 'index'])->name('news.index');
-Route::get('/news/create', [NewsController::class, 'create'])->name('news.create');
-Route::post('/news', [NewsController::class, 'store'])->name('news.store');
-Route::get('/news/{news}', [NewsController::class, 'show'])->name('news.show');
-Route::get('/news/{news}/edit', [NewsController::class, 'edit'])->name('news.edit');
-Route::patch('/news/{news}', [NewsController::class, 'update'])->name('news.update');
-Route::delete('/news/{news}', [NewsController::class, 'destroy'])->name('news.destroy');
+
+Route::get('/news', \App\Http\Controllers\News\IndexController::class)->name('news.index');
+Route::get('/news/create', \App\Http\Controllers\News\CreateController::class)->name('news.create');
+Route::post('/news', \App\Http\Controllers\News\StoreController::class)->name('news.store');
+Route::get('/news/{news}', \App\Http\Controllers\News\ShowController::class)->name('news.show');
+Route::get('/news/{news}/edit', \App\Http\Controllers\News\EditController::class)->name('news.edit');
+Route::patch('/news/{news}', \App\Http\Controllers\News\UpdateController::class)->name('news.update');
+Route::delete('/news/{news}', \App\Http\Controllers\News\DestroyController::class)->name('news.destroy');
 
 // Route::get('/news/create', [NewsController::class, 'createNews']);
 // Route::get('/news/update', [NewsController::class, 'updateNews']);
