@@ -3,20 +3,14 @@
 namespace App\Http\Controllers\Contacts;
 
 use App\Models\Contact;
-use Illuminate\Http\Request;
-use Illuminate\View\Component;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Contacts\UpdateRequest;
 
 class UpdateController extends Controller
 {
-    public function __invoke(Contact $contact)
+    public function __invoke(UpdateRequest $request, Contact $contact)
 {
-    $contactArr = request()->validate([
-        'country' => 'string',
-        'city' => 'string',
-        'email' => 'string',
-        'phone' => 'string',
-    ]);
+    $contactArr = $request->validated();
     $contact->update($contactArr);
     return redirect()->route('contacts.index', $contact->id);
 }

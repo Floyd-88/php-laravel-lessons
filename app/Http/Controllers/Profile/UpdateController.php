@@ -5,19 +5,13 @@ namespace App\Http\Controllers\Profile;
 use App\Models\Profile;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Profile\UpdateRequest;
 
 class UpdateController extends Controller
 {
-    public function __invoke(Profile $profile)
+    public function __invoke(UpdateRequest $request, Profile $profile)
     {
-        $profileArr = request()->validate([
-            'name' => 'string',
-            'age' => 'int',
-            'city' => 'string',
-            'profession' => 'string',
-            'about_me' => 'string',
-            'ava' => '',
-        ]);
+        $profileArr = $request->validated();
         $profile->update($profileArr);
         return redirect()->route('profile.index', $profile->id);
     }

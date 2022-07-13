@@ -4,19 +4,13 @@ namespace App\Http\Controllers\Work;
 
 use App\Models\Work;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Work\UpdateRequest;
 
 class UpdateController extends Controller
 {
-    public function __invoke(Work $work)
+    public function __invoke(UpdateRequest $request, Work $work)
 {
-    $workArr = request()->validate([
-        'title_work' => 'string',
-        'description_work' => 'string',
-        'link' => '',
-        'grade' => '',
-        'language_id' => 'int',
-        'tags'=> '',
-    ]); 
+    $workArr = $request->validated(); 
     $tags = $workArr['tags'];
     unset($workArr['tags']);
     $work->update($workArr);

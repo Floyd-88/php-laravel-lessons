@@ -4,20 +4,14 @@ namespace App\Http\Controllers\Work;
 
 use App\Models\Work;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Work\StoreRequest;
 
 class StoreController extends Controller
 {
 
-    public function __invoke()
+    public function __invoke(StoreRequest $request)
 {
-    $work = request()->validate([
-        'title_work' => 'string',
-        'description_work' => 'string',
-        'link' => '',
-        'grade' => '',
-        'language_id' => 'int',
-        'tags'=> '',
-    ]);
+    $work = $request->validated();
     $tags = $work['tags'];
     unset($work['tags']);
 

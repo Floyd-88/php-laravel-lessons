@@ -5,19 +5,13 @@ namespace App\Http\Controllers\Profile;
 use App\Models\Profile;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Profile\StoreRequest;
 
 class StoreController extends Controller
 {
-    public function __invoke()
+    public function __invoke(StoreRequest $request)
     {
-        $profileArr = request()->validate([
-            'name' => 'string',
-            'age' => 'int',
-            'city' => 'string',
-            'profession' => 'string',
-            'about_me' => 'string',
-            'ava' => '',
-        ]);
+        $profileArr = $request->validated();
         Profile::create($profileArr);
         return redirect()->route('profile.index');   
     }
