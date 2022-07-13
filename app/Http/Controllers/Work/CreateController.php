@@ -5,9 +5,9 @@ namespace App\Http\Controllers\Work;
 
 use App\Models\TagWork;
 use App\Models\Language;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Work\BaseController;
 
-class CreateController extends Controller
+class CreateController extends BaseController
 {
     public function __invoke()
 {

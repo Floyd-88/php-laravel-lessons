@@ -5,16 +5,17 @@ namespace App\Http\Controllers\Contacts;
 use App\Models\Contact;
 use Illuminate\Http\Request;
 use Illuminate\View\Component;
-use App\Http\Controllers\Controller;
 use App\Http\Requests\Contacts\StoreRequest;
+use App\Http\Controllers\Contacts\BaseController;
 
-class StoreController extends Controller
+class StoreController extends BaseController
 {
 
     public function __invoke(StoreRequest $request)
 {
     $contactArr = $request->validated();
-    Contact::create($contactArr);
+    $this->service->store($contactArr);
+    
     return redirect()->route('contacts.index'); 
 }
   

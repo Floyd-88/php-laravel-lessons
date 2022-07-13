@@ -1,12 +1,11 @@
 <?php
 namespace App\Http\Controllers\News;
 
-
 use App\Models\TagNews;
 use App\Models\CategoryNews;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\News\BaseController;
 
-class CreateController extends Controller
+class CreateController extends BaseController
 {
     public function __invoke()
 {

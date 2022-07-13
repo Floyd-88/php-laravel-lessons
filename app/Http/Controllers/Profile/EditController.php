@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Profile;
 
 use App\Models\Profile;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Profile\BaseController;
 
-class EditController extends Controller
+class EditController extends BaseController
 {
 
     public function __invoke(Profile $profile)

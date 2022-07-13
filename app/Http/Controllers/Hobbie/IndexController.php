@@ -2,9 +2,9 @@
 namespace App\Http\Controllers\Hobbie;
 
 use App\Models\Hobbie;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Hobbie\BaseController;
 
-class IndexController extends Controller
+class IndexController extends BaseController
 {
 public function __invoke()
 {

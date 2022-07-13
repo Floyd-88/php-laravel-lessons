@@ -5,9 +5,9 @@ namespace App\Http\Controllers\Contacts;
 use App\Models\Contact;
 use Illuminate\Http\Request;
 use Illuminate\View\Component;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Contacts\BaseController;
 
-class CreateController extends Controller
+class CreateController extends BaseController
 {
     public function __invoke()
 {

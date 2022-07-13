@@ -1,11 +1,10 @@
 <?php
 namespace App\Http\Controllers\Work;
 
-
 use App\Models\Work;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Work\BaseController;
 
-class ShowController extends Controller
+class ShowController extends BaseController
 {
     public function __invoke(Work $work)
     {

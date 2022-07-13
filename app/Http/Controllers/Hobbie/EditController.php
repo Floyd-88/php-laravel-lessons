@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Hobbie;
 use App\Models\Hobbie;
 use App\Models\TagHobbie;
 use App\Models\CategoryHobbie;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Hobbie\BaseController;
 
-class EditController extends Controller
+class EditController extends BaseController
 {
 
     public function __invoke(Hobbie $hobbie)

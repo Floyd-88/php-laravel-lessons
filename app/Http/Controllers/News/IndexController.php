@@ -1,11 +1,10 @@
 <?php
 namespace App\Http\Controllers\News;
 
-
 use App\Models\News;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\News\BaseController;
 
-class IndexController extends Controller
+class IndexController extends BaseController
 {
 public function __invoke()
 {

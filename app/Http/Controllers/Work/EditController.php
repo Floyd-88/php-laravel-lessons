@@ -1,14 +1,12 @@
 <?php
 namespace App\Http\Controllers\Work;
 
-
-
 use App\Models\Work;
 use App\Models\TagWork;
 use App\Models\Language;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Work\BaseController;
 
-class EditController extends Controller
+class EditController extends BaseController
 {
 
     public function __invoke(Work $work)

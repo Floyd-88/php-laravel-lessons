@@ -4,10 +4,9 @@ namespace App\Http\Controllers\Hobbie;
 
 use App\Models\Tag;
 use App\Models\Hobbie;
+use App\Http\Controllers\Hobbie\BaseController;
 
-use App\Http\Controllers\Controller;
-
-class ShowController extends Controller
+class ShowController extends BaseController
 {
     public function __invoke(Hobbie $hobbie)
     {
