@@ -4,7 +4,7 @@
 <form action="{{route('hobbies.update', $hobbie->id)}}" method="post">
     @csrf
     @method('patch')
-  <div class="mb-3 row">
+  <div class="mb-3">
     <div class="col-sm-4">
     <label for="exampleInputPassword1" class="form-label">Редактировать увлечение:</label>
     <input type="text" value="{{ $hobbie->name_hobbie }}" name="name_hobbie" class="form-control" id="exampleInputPassword1">

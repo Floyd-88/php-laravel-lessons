@@ -2,13 +2,19 @@
 namespace App\Http\Controllers\Hobbie;
 
 use App\Models\Hobbie;
+use App\Http\Filters\HobbieFilter;
+use App\Http\Requests\Hobbie\FilterRequest;
 use App\Http\Controllers\Hobbie\BaseController;
 
 class IndexController extends BaseController
 {
-public function __invoke()
+public function __invoke(FilterRequest $request)
 {
-    $hobbie = Hobbie::all();
+    $data = $request->validated();
+    $filter = app()->make(HobbieFilter::class, ['queryParams' => array_filter($data)]);
+
+    // $hobbie = Hobbie::filter($filter)->get();
+    $hobbie = Hobbie::filter($filter)->paginate(15);
     return view('hobbie.index', compact('hobbie'));
 
     // $hobbie = Hobbie::find(1);

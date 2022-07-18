@@ -1,10 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\NewsController;
-use App\Http\Controllers\WorkController;
-use App\Http\Controllers\HobbieController;
-use App\Http\Controllers\MySiteController;
 
 
 /*
@@ -18,8 +14,31 @@ use App\Http\Controllers\MySiteController;
 |
 */
 
-Route::get('/', [MySiteController::class, 'showSite']);
+    // Route::group(['namespace'=>'Admin', 'prefix'=> 'admin'], function() {
+    //     Route::group(['namespace'=>'Hobbie'], function() {
+    //         Route::get('/hobbie', 'IndexController')->name('admin.hobbie.index');
+    //     });
+    // });
+    Route::get('/admin', App\Http\Controllers\Admin\MainAdmin\IndexController::class)->name('admin.index');
 
+    Route::get('/admin/hobbie', App\Http\Controllers\Admin\Hobbie\IndexController::class)->name('admin.hobbie.index');
+    Route::get('/admin/hobbie/{hobbieShow}', App\Http\Controllers\Admin\Hobbie\ShowController::class)->name('admin.hobbie.show');
+    Route::get('/admin/hobbie/{hobbieEdit}/edit', App\Http\Controllers\Admin\Hobbie\EditController::class)->name('admin.hobbie.edit');
+    Route::patch('/admin/hobbie/{hobbie}', App\Http\Controllers\Admin\Hobbie\UpdateController::class)->name('admin.hobbie.update');
+    Route::delete('admin/hobbie/{hobbieShow}', App\Http\Controllers\Admin\Hobbie\DestroyController::class)->name('admin.hobbie.destroy');
+    
+
+    Route::get('/admin/news', App\Http\Controllers\Admin\News\IndexController::class)->name('admin.news.index');
+    Route::get('/admin/news/{newsShow}', App\Http\Controllers\Admin\News\ShowController::class)->name('admin.news.show');
+    Route::get('/admin/news/{newsEdit}/edit', App\Http\Controllers\Admin\News\EditController::class)->name('admin.news.edit');
+    Route::patch('/admin/news/{news}', App\Http\Controllers\Admin\News\UpdateController::class)->name('admin.news.update');
+    Route::delete('admin/news/{newsShow}', App\Http\Controllers\Admin\News\DestroyController::class)->name('admin.news.destroy');
+
+    Route::get('/admin/work', App\Http\Controllers\Admin\Work\IndexController::class)->name('admin.work.index');
+    Route::get('/admin/work/{workShow}', App\Http\Controllers\Admin\Work\ShowController::class)->name('admin.work.show');
+    Route::get('/admin/work/{workEdit}/edit', App\Http\Controllers\Admin\Work\EditController::class)->name('admin.work.edit');
+    Route::patch('/admin/work/{work}', App\Http\Controllers\Admin\Work\UpdateController::class)->name('admin.work.update');
+    Route::delete('admin/work/{workShow}', App\Http\Controllers\Admin\Work\DestroyController::class)->name('admin.work.destroy');
 
 
 

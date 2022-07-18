@@ -2,13 +2,18 @@
 namespace App\Http\Controllers\Work;
 
 use App\Models\Work;
+use App\Http\Filters\WorkFilter;
+use App\Http\Requests\Work\FilterRequest;
 use App\Http\Controllers\Work\BaseController;
 
 class IndexController extends BaseController
 {
-public function __invoke()
+public function __invoke(FilterRequest $request)
 {
-    $work = Work::all();
+    $data = $request->validated();
+    $filter = app()->make(WorkFilter::class, ['queryParams' => array_filter($data)]);
+
+    $work = Work::filter($filter)->paginate(10);
     return view('work.index', compact('work'));
 
     // $work = Work::find(2);

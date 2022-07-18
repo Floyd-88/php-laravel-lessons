@@ -2,13 +2,17 @@
 namespace App\Http\Controllers\News;
 
 use App\Models\News;
+use App\Http\Filters\NewsFilter;
+use App\Http\Requests\News\FilterRequest;
 use App\Http\Controllers\News\BaseController;
 
 class IndexController extends BaseController
 {
-public function __invoke()
+public function __invoke(FilterRequest $request)
 {
-    $news = News::all();
+    $data = $request->validated();
+    $filter = app()->make(NewsFilter::class, ['queryParams' => array_filter($data)]);
+    $news = News::filter($filter)->paginate(10);
     return view('news.index', compact('news'));
 
     // $news = News::find(1);

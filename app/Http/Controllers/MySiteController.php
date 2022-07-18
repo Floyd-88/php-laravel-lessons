@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class MySiteController extends Controller
 {
-    public function showSite(){
-    return 'Главная страница';
+    public function index(){
+    return view('mySite');
     }
 }

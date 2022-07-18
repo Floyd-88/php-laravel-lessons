@@ -14,5 +14,7 @@
     </div> 
     <p style="text-align:center">_________________________________</p>
     @endforeach
+    <br>
+    {{$news->withQueryString()->links()}}
 <a href="{{ route('news.create') }}">Добавить новость</a>
 @endsection
