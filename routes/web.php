@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 
@@ -19,26 +20,29 @@ use Illuminate\Support\Facades\Route;
     //         Route::get('/hobbie', 'IndexController')->name('admin.hobbie.index');
     //     });
     // });
-    Route::get('/admin', App\Http\Controllers\Admin\MainAdmin\IndexController::class)->name('admin.index');
+    // Route::prefix('admin')->namespace('App\Http\Controllers\Admin\Post')->middleware('admin')->group(function() {
+    //     Route::get('/post', AdminController::class)->name('admin.post');
+    // });
+    Route::get('/admin', App\Http\Controllers\Admin\MainAdmin\IndexController::class)->middleware('admin')->name('admin.index');
 
-    Route::get('/admin/hobbie', App\Http\Controllers\Admin\Hobbie\IndexController::class)->name('admin.hobbie.index');
-    Route::get('/admin/hobbie/{hobbieShow}', App\Http\Controllers\Admin\Hobbie\ShowController::class)->name('admin.hobbie.show');
-    Route::get('/admin/hobbie/{hobbieEdit}/edit', App\Http\Controllers\Admin\Hobbie\EditController::class)->name('admin.hobbie.edit');
-    Route::patch('/admin/hobbie/{hobbie}', App\Http\Controllers\Admin\Hobbie\UpdateController::class)->name('admin.hobbie.update');
-    Route::delete('admin/hobbie/{hobbieShow}', App\Http\Controllers\Admin\Hobbie\DestroyController::class)->name('admin.hobbie.destroy');
+    Route::get('/admin/hobbie', App\Http\Controllers\Admin\Hobbie\IndexController::class)->middleware('admin')->name('admin.hobbie.index');
+    Route::get('/admin/hobbie/{hobbieShow}', App\Http\Controllers\Admin\Hobbie\ShowController::class)->middleware('admin')->name('admin.hobbie.show');
+    Route::get('/admin/hobbie/{hobbieEdit}/edit', App\Http\Controllers\Admin\Hobbie\EditController::class)->middleware('admin')->name('admin.hobbie.edit');
+    Route::patch('/admin/hobbie/{hobbie}', App\Http\Controllers\Admin\Hobbie\UpdateController::class)->middleware('admin')->name('admin.hobbie.update');
+    Route::delete('admin/hobbie/{hobbieShow}', App\Http\Controllers\Admin\Hobbie\DestroyController::class)->middleware('admin')->name('admin.hobbie.destroy');
     
 
-    Route::get('/admin/news', App\Http\Controllers\Admin\News\IndexController::class)->name('admin.news.index');
-    Route::get('/admin/news/{newsShow}', App\Http\Controllers\Admin\News\ShowController::class)->name('admin.news.show');
-    Route::get('/admin/news/{newsEdit}/edit', App\Http\Controllers\Admin\News\EditController::class)->name('admin.news.edit');
-    Route::patch('/admin/news/{news}', App\Http\Controllers\Admin\News\UpdateController::class)->name('admin.news.update');
-    Route::delete('admin/news/{newsShow}', App\Http\Controllers\Admin\News\DestroyController::class)->name('admin.news.destroy');
+    Route::get('/admin/news', App\Http\Controllers\Admin\News\IndexController::class)->middleware('admin')->name('admin.news.index');
+    Route::get('/admin/news/{newsShow}', App\Http\Controllers\Admin\News\ShowController::class)->middleware('admin')->name('admin.news.show');
+    Route::get('/admin/news/{newsEdit}/edit', App\Http\Controllers\Admin\News\EditController::class)->middleware('admin')->name('admin.news.edit');
+    Route::patch('/admin/news/{news}', App\Http\Controllers\Admin\News\UpdateController::class)->middleware('admin')->name('admin.news.update');
+    Route::delete('admin/news/{newsShow}', App\Http\Controllers\Admin\News\DestroyController::class)->middleware('admin')->name('admin.news.destroy');
 
-    Route::get('/admin/work', App\Http\Controllers\Admin\Work\IndexController::class)->name('admin.work.index');
-    Route::get('/admin/work/{workShow}', App\Http\Controllers\Admin\Work\ShowController::class)->name('admin.work.show');
-    Route::get('/admin/work/{workEdit}/edit', App\Http\Controllers\Admin\Work\EditController::class)->name('admin.work.edit');
-    Route::patch('/admin/work/{work}', App\Http\Controllers\Admin\Work\UpdateController::class)->name('admin.work.update');
-    Route::delete('admin/work/{workShow}', App\Http\Controllers\Admin\Work\DestroyController::class)->name('admin.work.destroy');
+    Route::get('/admin/work', App\Http\Controllers\Admin\Work\IndexController::class)->middleware('admin')->name('admin.work.index');
+    Route::get('/admin/work/{workShow}', App\Http\Controllers\Admin\Work\ShowController::class)->middleware('admin')->name('admin.work.show');
+    Route::get('/admin/work/{workEdit}/edit', App\Http\Controllers\Admin\Work\EditController::class)->middleware('admin')->name('admin.work.edit');
+    Route::patch('/admin/work/{work}', App\Http\Controllers\Admin\Work\UpdateController::class)->middleware('admin')->name('admin.work.update');
+    Route::delete('admin/work/{workShow}', App\Http\Controllers\Admin\Work\DestroyController::class)->middleware('admin')->name('admin.work.destroy');
 
 
 
@@ -102,3 +106,6 @@ Route::delete('/news/{news}', \App\Http\Controllers\News\DestroyController::clas
 // Route::get('/news/delete/', [NewsController::class, 'deleteNews']);
 // Route::get('/news/firstOrCreate', [NewsController::class, 'firstOrCreateNews']);
 // Route::get('/news/updateOrCreate', [NewsController::class, 'updateOrCreateNews']);
+
+Auth::routes();
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
