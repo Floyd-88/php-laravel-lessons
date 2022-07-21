@@ -32,6 +32,12 @@
         <li class="nav-item">
           <a class="nav-link" href="{{route('contacts.index')}}">Мои контакты</a>
         </li>
+
+        @can('view', auth()->user())
+        <li class="nav-item">
+          <a class="nav-link"href="{{route('admin.index')}}">Административная панель</a>
+        </li>
+        @endcan
       </ul>
     </div>
   </div>
