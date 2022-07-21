@@ -5,6 +5,7 @@ use App\Models\Hobbie;
 use App\Http\Filters\HobbieFilter;
 use App\Http\Requests\Hobbie\FilterRequest;
 use App\Http\Controllers\Hobbie\BaseController;
+use App\Http\Resources\Hobbie\HobbieResource;
 
 class IndexController extends BaseController
 {
@@ -15,7 +16,11 @@ public function __invoke(FilterRequest $request)
     $filter = app()->make(HobbieFilter::class, ['queryParams' => array_filter($data)]);
 
     // $hobbie = Hobbie::filter($filter)->get();
-    $hobbie = Hobbie::filter($filter)->paginate(15);
+    $page = $data['page'] ?? 1;
+    $perPage = $data['per_page'] ?? 10;
+    
+    $hobbie = Hobbie::filter($filter)->paginate($perPage, ['*'], 'page', $page);
+    // return HobbieResource::collection($hobbie);
     return view('hobbie.index', compact('hobbie'));
 
     // $hobbie = Hobbie::find(1);

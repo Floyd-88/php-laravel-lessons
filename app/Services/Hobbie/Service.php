@@ -11,6 +11,7 @@ class Service
         unset($hobbies['tags']);
         $hobbie = Hobbie::create($hobbies);
         $hobbie->hobbies()->attach($tags);
+        return $hobbie;
         // return $hobbies['category_hobbie_id'];
     }
 
@@ -19,5 +20,6 @@ class Service
         unset($hobbieArr['tags']);
         $hobbie->update($hobbieArr);
         $hobbie->hobbies()->sync($tags);
+        return $hobbie->fresh();
     }
 }

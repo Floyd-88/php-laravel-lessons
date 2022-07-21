@@ -27,6 +27,8 @@ class FilterRequest extends FormRequest
             'name_hobbie' => 'string',
             'category_hobbie_id' => '',
             'tags' => '',
+            'page' => '',
+	        'per_page' => '',
         ];
     }
 }
